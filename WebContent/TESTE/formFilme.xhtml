@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:b="http://bootsfaces.net/ui"> 
+
+<h:head></h:head> 
+<body> 
+
+<p:layout style="min-width:400px;min-height:400px;">
+    <p:layoutUnit position="west" resizable="true" size="235" minSize="200" maxSize="250">
+    <div class="ui-g">
+    	<div class="ui-g-50]">
+    
+	<b:container fluid="true">
+		<b:row>
+			<b:column medium-screen="2">
+				<div id="menu">
+					<ui:insert name="menu-lateral">
+						<ui:include src="/menu.xhtml" />
+					</ui:insert>
+				</div>
+			
+		</b:column>
+	</b:row>
+</b:container>
+		</div>
+	</div>    
+    </p:layoutUnit>
+
+    <p:layoutUnit position="center">
+
+	<h:form>
+		<b:container fluid="true">
+			
+				<b:column medium-screen="4">
+					<h:outputLabel value="Titulo" />
+						<b:inputText  value="#"/>  
+						</b:column>
+						<b:column medium-screen="6">
+					<h:outputLabel value="Ano de Lançamento" />
+						<b:inputText value="#"/>
+						</b:column>
+						
+						
+						<b:column medium-screen="4">				
+					<h:outputLabel value="Tipo de midia" />
+						<b:inputText value="#" />
+						</b:column>
+						
+						<b:column medium-screen="6">
+					<h:outputLabel value="idade Minima" />
+						<b:inputText value="#"/>
+						</b:column>
+						<b:column medium-screen="4">
+					<h:outputLabel value="Produtora" />
+						<b:inputText value="#"/>
+						</b:column>
+						<b:column medium-screen="6">
+					<h:outputLabel value="Genero" />
+						<b:inputText value="#"/>	
+							</b:column>
+							
+<!-- 							<b:column medium-screen="4"> -->
+<!-- 					<h:outputLabel value="Elenco" /> -->
+<!-- 						<b:inputText/> -->
+<!-- 						</b:column> -->
+<!-- 						//////////////////////////////// -->
+					
+<!-- 					<b:column medium-screen="6"> -->
+<!-- 						 <p:dataList value="#{dataListView.cars1}" var="car" type="ordered"> -->
+<!--         <f:facet name="header"> -->
+<!--             Elenco -->
+<!--         </f:facet> -->
+<!--     </p:dataList> -->
+<!-- 						</b:column> -->
+						
+						
+		</b:container>
+	<b:commandButton value="Cadastrar" actionListener="#{obraMB.inserir()}"/>
+	</h:form>
+  
+   </p:layoutUnit>
+</p:layout>
+
+
+
+</body> 
+</html>

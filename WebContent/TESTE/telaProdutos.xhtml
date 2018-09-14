@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<style>
+body {
+	margin: 0;
+}
+
+.menu {
+	width: 20%;
+	height: 500px;
+	float: left;
+	/* 	background-color: blue; */
+}
+
+.anuncio {
+	width: 20%;
+	height: 100px;
+	float: left;
+	background-color: green;
+}
+
+.conteudo {
+	width: 60%;
+	height: 100px;
+	float: left;
+	background-color: red;
+}
+
+@media ( max-width : 900px) {
+	
+}
+
+@media ( max-width : 400px) {
+	
+	}
+}
+</style>
+</h:head>
+
+<body style="background: gray">
+
+	<div class="container-fluid" id="menuTopo">
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:submenu label="Produto" icon="ui-icon-document">
+					<p:submenu label="Novo" icon="ui-icon-contact">
+						<p:menuitem value="Filme" url="#" />
+						<p:menuitem value="Jogo" url="#" />
+					</p:submenu>
+					<p:menuitem value="Open" url="#" />
+					<p:separator />
+					<p:menuitem value="Quit" url="#" />
+				</p:submenu>
+
+				<p:submenu label="Cliente" icon="ui-icon-pencil">
+					<p:menuitem value="Cadastrar" url="formCliente.xhtml"
+						icon="ui-icon-arrowreturnthick-1-w" />
+					<p:menuitem value="Buscar" url="#"
+						icon="ui-icon-arrowreturnthick-1-e" />
+				</p:submenu>
+
+				<p:submenu label="Relatorios" icon="ui-icon-help">
+					<p:menuitem value="Contents" url="#" />
+					<p:submenu label="Search" icon="ui-icon-search">
+						<p:submenu label="Text">
+							<p:menuitem value="Workspace" url="#" />
+						</p:submenu>
+						<p:menuitem value="File" url="#" />
+					</p:submenu>
+				</p:submenu>
+
+				<p:submenu label="Actions" icon="ui-icon-gear">
+					<p:submenu label="Ajax" icon="ui-icon-refresh">
+						<p:menuitem value="Save" actionListener="#{menuView.save}"
+							icon="ui-icon-disk" update="messages" />
+						<p:menuitem value="Update" actionListener="#{menuView.update}"
+							icon="ui-icon-arrowrefresh-1-w" update="messages" />
+					</p:submenu>
+					<p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+						<p:menuitem value="Delete" actionListener="#{menuView.delete}"
+							icon="ui-icon-close" update="messages" ajax="false" />
+					</p:submenu>
+				</p:submenu>
+
+				<p:menuitem value="Quit" url="http://www.primefaces.org"
+					icon="ui-icon-close" />
+
+				<f:facet name="options">
+					<p:inputText style="margin-right:10px" placeholder="Pesquisar" />
+					<p:commandButton type="button" value="Buscar"
+						icon="ui-icon-extlink" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+
+	</div>
+
+	<hr></hr>
+	<!-- MENU LATERAL  -->
+	<div class="ui-fluid">
+		<p:layout>
+
+			<p:layoutUnit position="west" resizable="true" size="280">
+
+				<h:form>
+
+					<p:growl id="messages" showDetail="false" />
+
+					<h3 style="margin-top: 0"></h3>
+					<p:menu>
+						<p:submenu label="Ajax">
+							<p:menuitem value="Save" actionListener="#{menuView.save}"
+								update="messages" icon="ui-icon-disk" />
+							<p:menuitem value="Update" actionListener="#{menuView.update}"
+								update="messages" icon="ui-icon-arrowrefresh-1-w" />
+						</p:submenu>
+						<p:submenu label="Non-Ajax">
+							<p:menuitem value="Delete" actionListener="#{menuView.delete}"
+								update="messages" ajax="false" icon="ui-icon-close" />
+						</p:submenu>
+						<p:submenu label="Navigations">
+							<p:menuitem value="External" url="http://www.primefaces.org"
+								icon="ui-icon-home" />
+							<p:menuitem value="Internal" icon="ui-icon-star" />
+						</p:submenu>
+					</p:menu>
+				</h:form>
+			</p:layoutUnit>
+
+
+			<!-- CENTRO -->
+			<p:layoutUnit position="center" style="width: 500px">
+
+				<h:form id="formTabelaJogos">
+					<p:dataTable value="#{jogosMB.jg}" var="jg">
+						<p:column headerText="ID">
+							<h:outputText value="#{jg.id}" />
+						</p:column>
+
+						<p:column headerText="Nome">
+							<h:outputText value="#{jg.titulo}" />
+						</p:column>
+
+						<p:column headerText="Idade Minima">
+							<h:outputText value="#{jg.idadeMinima}" />
+						</p:column>
+
+						<p:column headerText="Produtora">
+							<h:outputText value="#{jg.produtora}" />
+						</p:column>
+
+<!-- 						<p:column headerText="Genero"> -->
+<!-- 							<h:outputText value="#{jg.genero}" /> -->
+<!-- 						</p:column> -->
+
+						<p:column headerText="Status">
+							<h:outputText value="#{jg.status}" />
+						</p:column>
+
+<!-- 						<p:column headerText="Plataforma"> -->
+<!-- 							<h:outputText value="#{jg.plataforma}" /> -->
+<!-- 						</p:column> -->
+
+<!-- 						<p:column headerText="Ano"> -->
+<!-- 							<h:outputText value="#{jg.ano}" /> -->
+<!-- 						</p:column> -->
+
+<!-- 						<p:column headerText="Multiplayer"> -->
+<!-- 							<h:outputText value="#{jg.multiplayer}" /> -->
+<!-- 						</p:column> -->
+
+<!-- 						<p:column headerText="Online"> -->
+<!-- 							<h:outputText value="#{jg.ehOnline}" /> -->
+<!-- 						</p:column> -->
+
+<!-- 						<p:column headerText="Estado"> -->
+<!-- 							<h:outputText value="#{cid.estado.nome}" /> -->
+<!-- 						</p:column> -->
+
+					</p:dataTable>
+
+				</h:form>
+			</p:layoutUnit>
+		</p:layout>
+	</div>
+</body>
+</html>

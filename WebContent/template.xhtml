@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<h:head></h:head>
+<h:body>
+
+
+	<b:navBar brand="Menu" brandHref="index.xhtml" inverse="true">
+		<b:navbarLinks>
+			<b:dropMenu value="Cadastros">
+
+				<b:navLink value="Cadastro cliente" href="cadastroCliente.xhtml"></b:navLink>
+
+				<b:navLink value="Cadastro empregado" href="cadastroEmpregado.xhtml"></b:navLink>
+
+				<b:navLink value="Cadastro dependente"
+					href="cadastroDependente.xhtml"></b:navLink>
+
+				<b:navLink value="Cadastro filme" href="cadastroFilme.xhtml"></b:navLink>
+
+				<b:navLink value="Cadastro jogo" href="cadastroJogos.xhtml"></b:navLink>
+
+				<b:navLink value="Cadastro genero" href="cadastroGenero.xhtml"></b:navLink>
+
+				<b:navLink value="Cadastro produtora" href="cadastroProdutora.xhtml"></b:navLink>
+
+
+
+			</b:dropMenu>
+
+
+
+			<b:navLink value="Alugados" href="#"></b:navLink>
+			<b:navLink value="Lançamentos" href="#"></b:navLink>
+
+			<form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs"
+				role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search" />
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+		</b:navbarLinks>
+	</b:navBar>
+
+
+
+
+
+	<hr />
+	<br />
+
+
+	<ui:insert name="corpo">
+		conteudo
+	</ui:insert>
+
+</h:body>
+</html>

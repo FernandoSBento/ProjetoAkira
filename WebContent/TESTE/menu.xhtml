@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+<h:head></h:head>
+<h:body>
+
+
+	<h:form>
+		<b:growl id="messages" showDetail="true" />
+
+		<p:tieredMenu style="width:200px">
+
+			<p:menuitem value="Save" actionListener="formEmpregado.xhtml"
+				update="messages" icon="ui-icon-disk" />
+			<p:menuitem value="Update" actionListener="WEB-INF/formFilme.xhtml?faces-redirect=true"
+				update="messages" icon="ui-icon-arrowrefresh-1-w" />
+
+			<p:menuitem value="Delete" actionListener="#"
+				update="messages" ajax="false" icon="ui-icon-close" />
+			<p:separator />
+			<p:menuitem value="Prime" url="http://www.prime.com.tr" title="xxx" />
+			<p:menuitem value="PrimeFaces" url="http://www.primefaces.org" />
+			<p:menuitem value="Mobile" />
+		</p:tieredMenu>
+
+		<p:separator />
+
+
+
+	</h:form>
+
+
+
+
+</h:body>
+</html>

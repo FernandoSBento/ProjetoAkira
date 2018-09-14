@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style>
+body.center-form {
+	min-height: 100vh;
+}
+
+div.center-form {
+	position: relative;
+	min-height: 70vh;
+}
+
+div.center-form>form {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+}
+</style>
+</h:head>
+<h:body class="center-form">
+
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/template.xhtml" />
+		</ui:insert>
+	</div>
+
+	<div style="background-color: gray">
+
+		<h4 style="text-align: center;">Cadastro de jogo</h4>
+
+	</div>
+
+	<br />
+
+	<div class="center-form">
+
+		<h:form id="formularioCadastroJogos">
+			<h:panelGrid columns="2">
+				<h:panelGrid columns="1">
+					<h:outputText value="Título" />
+					<p:inputText id="tituloFilme" value="#{jogosMB.jogo.titulo}"
+						required="true" requiredMessage="Preencha o título" />
+					<p:message for="tituloFilme" />
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Ano de lançamento" />
+					<p:inputText id="anoFilme" value="#{jogosMB.jogo.ano}"
+						required="true" requiredMessage="Preencha ano de lançamento" />
+					<p:message for="anoFilme" />
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Gênero" />
+					<p:selectOneMenu value="#{jogosMB.jogo.genero}"
+						converter="converterGenero">
+						<f:selectItems value="#{generoMB.listaGeneros}" var="gen"
+							itemLabel="#{gen.nome}" itemValue="#{gen}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Classificação indicativa" />
+					<p:inputText id="clasIndFilme" value="#{jogosMB.jogo.idadeMinima}"
+						required="true" requiredMessage="Preencha o endereco" />
+					<p:message for="clasIndFilme" />
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Produtora" />
+					<p:selectOneMenu value="#{jogosMB.jogo.produtora}"
+						converter="converterProdutora">
+						<f:selectItems value="#{produtoraMB.listaProdutoras}" var="prod"
+							itemLabel="#{prod.nome}" itemValue="#{prod}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Multiplayer" />
+						<p:message for="multiplayerJogo" />
+						<p:selectOneRadio id="multiplayerJogo"
+							value="#{jogosMB.jogo.multiplayer}" required="true"
+							requiredMessage="Escolha uma opção!">
+							<f:selectItem itemLabel="Sim" itemValue="1" />
+							<f:selectItem itemLabel="Não" itemValue="2" />
+						</p:selectOneRadio>
+					</h:panelGrid>
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Online" />
+						<p:message for="onlineJogo" />
+						<p:selectOneRadio id="onlineJogo" value="#{jogosMB.jogo.ehOnline}"
+							required="true" requiredMessage="Escolha uma opção!">
+							<f:selectItem itemLabel="Sim" itemValue="1" />
+							<f:selectItem itemLabel="Não" itemValue="2" />
+						</p:selectOneRadio>
+					</h:panelGrid>
+				</h:panelGrid>
+				<p:commandButton update="@form,formularioTabelaJogos"
+					value="Cadastrar" actionListener="#{jogosMB.inserir()}" />
+
+			</h:panelGrid>
+		</h:form>
+	</div>
+	<br />
+		<h:form id="formularioTabelaJogos">
+			<p:dataTable var="jog" value="#{jogosMB.listaJogos}">
+				<p:column headerText="Id">
+					<h:outputText value="#{jog.id}" />
+				</p:column>
+				<p:column headerText="Título">
+					<h:outputText value="#{jog.titulo}" />
+				</p:column>
+				<p:column headerText="Ano de Lançamento">
+					<h:outputText value="#{jog.ano}" />
+				</p:column>
+				<p:column headerText="Gênero">
+					<h:outputText value="#{jog.genero.nome}" />
+				</p:column>
+				<p:column headerText="Idade Minima">
+					<h:outputText value="#{jog.idadeMinima}" />
+				</p:column>
+				<p:column headerText="Opções">
+					<p:commandButton value="Alterar" update="formularioCadastroJogos">
+						<f:setPropertyActionListener value="#{jog}"
+							target="#{jogosMB.jogo}" />
+					</p:commandButton>
+					<p:commandButton value="Excluir"
+						actionListener="#{jogosMB.excluir(jog.id)}" update="@form">
+						<p:confirm header="Confirmação" message="Deseja excluir o jogo?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-check" />
+			</p:confirmDialog>
+		</h:form>
+
+	<div id="rodape">
+		<ui:insert name="rodape">
+			<ui:include src="/rodape.xhtml" />
+		</ui:insert>
+	</div>
+
+</h:body>
+</html>

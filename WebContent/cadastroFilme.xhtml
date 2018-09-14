@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style>
+body.center-form {
+	min-height: 100vh;
+}
+
+div.center-form {
+	position: relative;
+	min-height: 70vh;
+}
+
+div.center-form>form {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+}
+</style>
+</h:head>
+<h:body class="center-form">
+
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/template.xhtml" />
+		</ui:insert>
+	</div>
+	
+	
+	<div style="background-color:gray ">
+
+<h4 style="text-align: center; ">Cadastro de filme</h4>
+
+</div>
+
+<br/>
+	
+	
+	<div class="center-form">
+		<h:form id="formularioCadastroFilmes">
+			<h:panelGrid columns="2">
+				<h:panelGrid columns="1">
+					<h:outputText value="Título" />
+					<p:inputText id="tituloFilme" value="#{filmesMB.filme.titulo}"
+						required="true" requiredMessage="Preencha o título" />
+					<p:message for="tituloFilme" />
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Ano de lançamento" />
+					<p:inputText id="anoFilme" value="#{filmesMB.filme.ano}"
+						required="true" requiredMessage="Preencha ano de lançamento" />
+					<p:message for="anoFilme" />
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Gênero" />
+					<p:selectOneMenu value="#{filmesMB.filme.genero}"
+						converter="converterGenero">
+						<f:selectItems value="#{generoMB.listaGeneros}" var="gen"
+							itemLabel="#{gen.nome}" itemValue="#{gen}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Classificação indicativa" />
+					<p:inputText id="clasIndFilme"
+						value="#{filmesMB.filme.idadeMinima}" required="true"
+						requiredMessage="Preencha a classificação indicativa" />
+					<p:message for="clasIndFilme" />
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Produtora" />
+					<p:selectOneMenu value="#{filmesMB.filme.produtora}"
+						converter="converterProdutora">
+						<f:selectItems value="#{produtoraMB.listaProdutoras}" var="prod"
+							itemLabel="#{prod.nome}" itemValue="#{prod}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<h:outputText value="Diretor" />
+					<p:inputText id="diretorFilme" value="#{filmesMB.filme.diretor}"
+						required="true" requiredMessage="Preencha o diretor" />
+					<p:message for="diretorFilme" />
+				</h:panelGrid>
+				<p:commandButton update="@form,formularioTabelaFilmes"
+					value="Cadastrar" actionListener="#{filmesMB.inserir()}" />
+
+			</h:panelGrid>
+		</h:form>
+	</div>
+	<br />
+	<h:form id="formularioTabelaFilmes">
+		<p:dataTable var="fil" value="#{filmesMB.listaFilmes}">
+			<p:column headerText="Id">
+				<h:outputText value="#{fil.id}" />
+			</p:column>
+			<p:column headerText="Título">
+				<h:outputText value="#{fil.titulo}" />
+			</p:column>
+			<p:column headerText="Ano de Lançamento">
+				<h:outputText value="#{fil.ano}" />
+			</p:column>
+			<p:column headerText="Gênero">
+				<h:outputText value="#{fil.genero.nome}" />
+			</p:column>
+			<p:column headerText="Idade Minima">
+				<h:outputText value="#{fil.idadeMinima}" />
+			</p:column>
+			<p:column headerText="Opções">
+				<p:commandButton value="Alterar" update="formularioCadastroFilmes">
+					<f:setPropertyActionListener value="#{fil}"
+						target="#{filmesMB.filme}" />
+				</p:commandButton>
+				<p:commandButton value="Excluir"
+					actionListener="#{filmesMB.excluir(fil.id)}" update="@form">
+					<p:confirm header="Confirmação" message="Deseja excluir o cliente?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-check" />
+		</p:confirmDialog>
+	</h:form>
+
+	<div id="rodape">
+		<ui:insert name="rodape">
+			<ui:include src="/rodape.xhtml" />
+		</ui:insert>
+	</div>
+	
+</h:body>
+</html>

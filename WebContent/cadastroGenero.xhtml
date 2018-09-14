@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style>
+body.center-form {
+	min-height: 100vh;
+}
+
+div.center-form {
+	position: relative;
+	min-height: 70vh;
+}
+
+div.center-form>form {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+}
+</style>
+</h:head>
+<h:body class="center-form">
+
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/template.xhtml" />
+		</ui:insert>
+	</div>
+
+	<div style="background-color: gray">
+
+		<h4 style="text-align: center;">Cadastro de gênero</h4>
+
+	</div>
+
+	<br />
+
+
+	<div class="center-form">
+		<h:form id="formularioCadastroGenero">
+			<h:panelGrid columns="2">
+				<h:panelGrid columns="1">
+					<h:outputText value="nome" />
+					<p:inputText id="nomeGenero" value="#{generoMB.genero.nome}"
+						required="true" requiredMessage="Preencha o nome" />
+					<p:message for="nomeGenero" />
+				</h:panelGrid>
+				<p:commandButton update="@form,formularioTabelaGenero"
+					value="Cadastrar" actionListener="#{generoMB.inserir()}" />
+
+			</h:panelGrid>
+		</h:form>
+	</div>
+	<br />
+		<h:form id="formularioTabelaGenero">
+			<p:dataTable var="gen" value="#{generoMB.listaGeneros}">
+				<p:column headerText="Id">
+					<h:outputText value="#{gen.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{gen.nome}" />
+				</p:column>
+				<p:column headerText="Opções">
+					<p:commandButton value="Alterar" update="formularioCadastroGenero">
+						<f:setPropertyActionListener value="#{gen}"
+							target="#{generoMB.genero}" />
+					</p:commandButton>
+					<p:commandButton value="Excluir"
+						actionListener="#{generoMB.excluir(gen.id)}" update="@form">
+						<p:confirm header="Confirmação" message="Deseja excluir o gênero?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-check" />
+			</p:confirmDialog>
+		</h:form>
+
+	<div id="rodape">
+		<ui:insert name="rodape">
+			<ui:include src="/rodape.xhtml" />
+		</ui:insert>
+	</div>
+
+</h:body>
+</html>

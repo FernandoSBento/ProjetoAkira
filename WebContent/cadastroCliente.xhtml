@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<style>
+body.center-form {
+	min-height: 100vh;
+}
+
+div.center-form {
+	position: relative;
+	min-height: 70vh;
+}
+
+div.center-form>form {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+}
+</style>
+
+
+
+
+<ui:composition template="template.xhtml">
+	<ui:define name="corpo">
+
+		<div class="center-form">
+
+
+
+			<div style="background-color: gray">
+
+				<h4 style="text-align: center;">Cadastro de cliente</h4>
+
+			</div>
+
+			<br />
+
+
+			<div class="center-form">
+				<h:form style="padding: 20px;" id="formularioCadastroCliente">
+
+
+					<h:panelGrid columns="2">
+						<h:panelGrid columns="1">
+							<h:outputText value="nome" />
+							<p:inputText id="nomeEmpregado" value="#{clienteMB.cliente.nome}"
+								required="true" requiredMessage="Preencha o nome" />
+							<p:message for="nomeEmpregado" />
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<h:outputText value="Data de Nascimento" />
+							<p:calendar id="dataEmpregado"
+								value="#{clienteMB.cliente.dtNasc}" required="true"
+								requiredMessage="Preencha a data de nascimento" />
+							<p:message for="dataEmpregado" />
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<h:outputText value="RG" />
+							<p:inputMask mask="**.***.***-*" id="rgEmpregado"
+								value="#{clienteMB.cliente.rg}" required="true"
+								requiredMessage="Preencha o rg" />
+							<p:message for="rgEmpregado" />
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<h:outputText value="CPF" />
+							<p:inputMask mask="***.***.***-**" id="cpfEmpregado"
+								value="#{clienteMB.cliente.cpf}" required="true"
+								requiredMessage="Preencha o cpf" />
+							<p:message for="cpfEmpregado" />
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<h:outputText value="Endereço" />
+							<p:inputText id="enderecoEmpregado"
+								value="#{clienteMB.cliente.endereco}" required="true"
+								requiredMessage="Preencha o endereco" />
+							<p:message for="enderecoEmpregado" />
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<h:outputText value="E-mail" />
+							<p:inputText id="emailEmpregado"
+								value="#{clienteMB.cliente.email}" required="true"
+								requiredMessage="Preencha o email" />
+							<p:message for="emailEmpregado" />
+						</h:panelGrid>
+						<p:commandButton update="@form,formularioTabelaCliente"
+							value="Cadastrar" actionListener="#{clienteMB.inserir()}" />
+
+					</h:panelGrid>
+				</h:form>
+			</div>
+			<br />
+			<h:form id="formularioTabelaCliente">
+				<p:dataTable var="cli" value="#{clienteMB.clientes}">
+					<p:column headerText="Id">
+						<h:outputText value="#{cli.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{cli.nome}" />
+					</p:column>
+					<p:column headerText="E-mail">
+						<h:outputText value="#{cli.email}" />
+					</p:column>
+					<p:column headerText="CPF">
+						<h:outputText value="#{cli.cpf}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:commandButton value="Alterar"
+							update="formularioCadastroCliente">
+							<f:setPropertyActionListener value="#{cli}"
+								target="#{clienteMB.cliente}" />
+						</p:commandButton>
+						<p:commandButton value="Excluir"
+							actionListener="#{clienteMB.excluir(cli.id)}" update="@form">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir o cliente?" icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-check" />
+				</p:confirmDialog>
+			</h:form>
+
+
+
+			<div id="rodape">
+				<ui:insert name="rodape">
+					<ui:include src="/rodape.xhtml" />
+				</ui:insert>
+			</div>
+
+		</div>
+
+	</ui:define>
+</ui:composition>
+
+
+</html>

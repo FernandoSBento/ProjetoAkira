@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:b="http://bootsfaces.net/ui">
+       
+
+<h:head></h:head> 
+<h:body> 
+
+<p:layout style="min-width:400px;min-height:450px;">
+    <p:layoutUnit position="west" resizable="true" size="235" minSize="200" maxSize="250">
+    <div class="ui-g">
+    	<div class="ui-g-50]">
+    
+	<b:container fluid="true">
+		<b:row>
+			<b:column medium-screen="2">
+				<div id="menu">
+					<ui:insert name="menu-lateral">
+						<ui:include src="/menu.xhtml" />
+					</ui:insert>
+				</div>
+			
+		</b:column>
+	</b:row>
+</b:container>
+		</div>
+	</div>    
+    </p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
+			<h:form id="formEmpregado">
+				<b:container fluid="true">
+
+					<b:column medium-screen="4">
+						<h:outputLabel value="nome" />
+						<b:inputText value="#{empregadoMB.empregado.nome}" />
+					</b:column>
+
+					<b:column medium-screen="6">
+						<h:outputLabel value="RG" />
+						<b:inputText id="rg" value="#{empregadoMB.empregado.rg}" />
+					</b:column>
+
+					<b:column medium-screen="4">
+						<h:outputLabel value="CPF" />
+						<b:inputText id="cpf" value="#{empregadoMB.empregado.cpf}" />
+					</b:column>
+
+					<b:column medium-screen="6">
+						<h:outputLabel value="Telefone" />
+						<b:inputText id="tel" value="" />
+					</b:column>
+
+					<b:column medium-screen="4">
+						<h:outputLabel value="Endereço" />
+						<b:inputText id="endereco"
+							value="#{empregadoMB.empregado.endereco}" />
+					</b:column>
+
+					<b:column medium-screen="6">
+						<h:outputLabel value="E-mail" />
+						<b:inputText value="#{empregadoMB.empregado.email}" />
+					</b:column>
+
+					<b:column medium-screen="4">
+						<h:outputLabel value="Data de nascimento" />
+						<b:inputText value="#{empregadoMB.empregado.dtNasc}" />
+					</b:column>
+
+					<b:column medium-screen="6">
+						<h:outputLabel value="Login" />
+						<b:inputText value="#{empregadoMB.empregado.login}" />
+					</b:column>
+
+					<b:column medium-screen="4">
+						<h:outputLabel value="Senha" />
+						<b:inputText value="#{empregadoMB.empregado.senha}" />
+					</b:column>
+
+					<!-- 						<b:column medium-screen="4"> -->
+					<!-- 					<h:outputLabel value=" confime a Senha" /> -->
+					<!-- 						<b:inputText value=""/> -->
+					<!-- 						</b:column> -->
+
+					<!-- 						//////////////////////////////// -->
+
+
+
+				</b:container>
+				<b:commandButton update="@form" value="Cadastrar"
+					actionListener="#{empregadoMB.inserir()}" />
+
+			</h:form>
+
+		</p:layoutUnit>
+	</p:layout>
+
+<!-- <h:form id="formTabelaEpregado"> -->
+<!-- 		<p:dataTable value="#{empregadoMB.empregados}" var="emp"> -->
+<!-- 			<p:column headerText="ID"> -->
+<!-- 				<h:outputText value="#{emp.id}" /> -->
+<!-- 			</p:column> -->
+<!-- 			<p:column headerText="Nome"> -->
+<!-- 				<h:outputText value="#{emp.nome}" /> -->
+<!-- 			</p:column> -->
+<!-- 			<p:column headerText="RG"> -->
+<!-- 				<h:outputText value="#{emp.rg}" /> -->
+<!-- 			</p:column> -->
+<!-- 			<p:column headerText="Opções"> -->
+<!-- 				<p:commandButton value="Alterar" update="formEmpregado"> -->
+<!-- 					<f:setPropertyActionListener value="#{emp}" -->
+<!-- 						target="#{empregadoMB.empregados}" /> -->
+<!-- 				</p:commandButton> -->
+<!-- 				<p:commandButton value="Excluir" -->
+<!-- 					actionListener="#{empregadoMB.excluir(est.id)}" update="@form"> -->
+<!-- 					<p:confirm header="Confirmação" message="Deseja excluir o estado?" -->
+<!-- 						icon="ui-icon-alert" /> -->
+<!-- 				</p:commandButton> -->
+<!-- 			</p:column> -->
+<!-- 		</p:dataTable> -->
+
+<!-- 		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"> -->
+<!-- 			<p:commandButton value="Sim" type="button" -->
+<!-- 				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" /> -->
+<!-- 			<p:commandButton value="Não" type="button" -->
+<!-- 				styleClass="ui-confirmdialog-no" icon="ui-icon-close" /> -->
+<!-- 		</p:confirmDialog> -->
+<!-- 	</h:form> -->
+
+
+</h:body> 
+</html>

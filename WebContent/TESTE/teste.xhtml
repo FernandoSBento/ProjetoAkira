@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+<!-- 	<style> -->
+/* html, body { */
+/* 	height: 100%; */
+/* } */
+
+/* #login { */
+/* 	position: relative; */
+/* 	hight: 100px; left : 150px; */
+/* 	top: 200px; */
+/* 	left: 150px; */
+/* } */
+<!-- </style> -->
+
+</h:head>
+<body>
+
+
+	<div id="login">
+		<h:form id="loginForm" style="hight: 150px; width:100px">
+			<b:container >
+				<b:panel title="Tela de acesso" look="primary">
+					<b:row>
+						<b:column medium-screen="1">
+							<h:outputText value="Usuario:" for="username" />
+						</b:column>
+						<b:column medium-screen="4">
+							<b:inputText placeholder="Usuário" id="username" value=""
+								ajax="true" autocomplete="false" update="@(.message)">
+								<f:facet name="prepend">
+									<b:icon name="user" />
+								</f:facet>
+							</b:inputText>
+						</b:column>
+						<b:column medium-screen="6" style-class="message">
+							<b:message for="username" />
+						</b:column>
+					</b:row>
+					
+					
+					<b:row tooltip="This password has fancy error messages.">
+						<b:column medium-screen="1">
+							<h:outputText value="Senha:" />
+						</b:column>
+						<b:column medium-screen="4">
+							<b:inputSecret placeholder="senha" id="password" value=""
+								ajax="true" autocomplete="false" update="@(.message)">
+								<f:facet name="prepend">
+									<b:iconAwesome name="key" />
+								</f:facet>
+							</b:inputSecret>
+						</b:column>
+						<b:column medium-screen="6" styleClass="message">
+							<b:message for="password" />
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="2" offset="2">
+							<b:commandButton value="Entra" onclick="ajax:loginBean.login()"
+								update="@form" look="primary" style="width:100%" />
+						</b:column>
+						<b:column span="2">
+							<b:commandButton value="Recuperar senha"
+								onclick="ajax:loginBean.forgotPassword()" update="@form"
+								look="danger" style="width:100%" />
+						</b:column>
+					</b:row>
+				</b:panel>
+			</b:container>
+		</h:form>
+
+	</div>
+</body>
+</html>

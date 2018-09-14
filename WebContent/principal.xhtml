@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">  
+
+<h:head></h:head> 
+<body> 
+	<div class="ui-g">
+	    <div class="ui-g-12 ui-g-nopad">
+	    	<h:form>  
+			    <p:growl id="messages"/>
+<!-- Menu horizontal			  -->
+			    <p:menubar>
+			        <p:submenu label="Cadastros" icon="ui-icon-document">
+			        	<p:menuitem value="Cliente" url="#" />
+			            <p:menuitem value="Dependente" url="#" />
+			            <p:menuitem value="Empregado" url="#" />
+			            <p:separator />
+			            <p:submenu label="Produtos" icon="ui-icon-contact">
+			                <p:menuitem value="Filmes" url="/cadastroFilmes.xhtml" />
+			                <p:menuitem value="Jogos" src="/cadastroJogos.xhtml" />
+			            </p:submenu>
+			        </p:submenu>
+			 
+			        <p:submenu label="Movimentos" icon="ui-icon-pencil">
+			            <p:menuitem value="Locação" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+			            <p:menuitem value="Devolução" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+			        </p:submenu>
+			 
+			        <p:submenu label="Relatórios" icon="ui-icon-help">
+			            <p:menuitem value="Contents" url="#" />
+			            <p:submenu label="Search" icon="ui-icon-search">
+			                <p:submenu label="Text">
+			                    <p:menuitem value="Workspace" url="#" />
+			                </p:submenu>
+			                <p:menuitem value="File" url="#" />
+			            </p:submenu>
+			        </p:submenu>
+			 
+			        <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />
+			 
+			        <f:facet name="options">
+			            <p:inputText style="margin-right:10px" placeholder="Search"/>
+			            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+			        </f:facet>
+			    </p:menubar>
+			</h:form>
+	    </div>
+<!-- 		Div central -->
+	    <div class="ui-g-12 ui-g-nopad">
+<!-- 	    Menu lateral -->	    
+	    	<div class="ui-g-12 ui-md-2 ui-g-nopad">
+	    		<p:growl id="messages" showDetail="false"/>
+				<h:form>
+			    	<p:menu toggleable="true">
+				        <p:submenu label="Cadastros">
+				            <p:menuitem value="Cliente" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
+				            <p:menuitem value="Dependente" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+				        </p:submenu>
+				        <p:submenu label="Relatório">
+				            <p:menuitem value="Devoluções em atraso" actionListener="#{menuView.delete}" update="messages" ajax="false" icon="ui-icon-close"/>
+				        </p:submenu>
+				        <p:submenu label="Movimentos">
+				            <p:menuitem value="Locação" url="http://www.primefaces.org" icon="ui-icon-home"/>
+				            <p:menuitem value="Devolução" icon="ui-icon-star"/>
+				        </p:submenu>
+				    </p:menu>
+				</h:form>
+			</div>
+<!-- 	        Conteudo -->
+	        <div class="ui-g-12 ui-md-10 ui-g-nopad">
+ 	            
+					<div id="conteudo">
+						<ui:insert name="header">
+							<ui:include src="/cadastroEmpregado.xhtml" />
+						</ui:insert>
+				
+				
+					</div>
+	        </div>
+	    </div>
+<!-- 	    Rodapé -->
+	    <div class="ui-g-12">
+	        Footer
+	    </div>
+	</div>    
+</body> 
+</html>

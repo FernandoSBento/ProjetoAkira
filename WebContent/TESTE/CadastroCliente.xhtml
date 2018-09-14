@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Cadastro de cliente</h1>
+
+		<h:form id="frm">
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:commandButton value="Novo" />
+					<p:button value="Pesquisa" outcome="PesquisaClientes" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:tabView style="margin-top: 20px">
+				<p:tab title="Jogos">
+					<h:form id="formTabelaJogos">
+						<p:dataTable value="#{jogosMB.jg}" var="jg">
+<!-- 							<p:column headerText="ID"> -->
+<!-- 								<h:outputText value="#{jg.id}" /> -->
+<!-- 							</p:column> -->
+
+							<p:column headerText="Nome">
+								<h:outputText value="#{jg.titulo}" />
+							</p:column>
+
+<!-- 							<p:column headerText="Idade Minima"> -->
+<!-- 								<h:outputText value="#{jg.idadeMinima}" /> -->
+<!-- 							</p:column> -->
+
+<!-- 							<p:column headerText="Produtora"> -->
+<!-- 								<h:outputText value="#{jg.produtora}" /> -->
+<!-- 							</p:column> -->
+
+<!-- 							<p:column headerText="Genero"> -->
+<!-- 								<h:outputText value="#{jg.genero}" /> -->
+<!-- 							</p:column> -->
+
+							<p:column headerText="Status">
+								<h:outputText value="#{jg.status}" />
+							</p:column>
+
+<!-- 							<p:column headerText="Plataforma"> -->
+<!-- 								<h:outputText value="#{jg.plataforma}" /> -->
+<!-- 							</p:column> -->
+
+<!-- 							<p:column headerText="Ano"> -->
+<!-- 								<h:outputText value="#{jg.ano}" /> -->
+<!-- 							</p:column> -->
+
+<!-- 							<p:column headerText="Multiplayer"> -->
+<!-- 								<h:outputText value="#{jg.multiplayer}" /> -->
+<!-- 							</p:column> -->
+
+<!-- 							<p:column headerText="Online"> -->
+<!-- 								<h:outputText value="#{jg.ehOnline}" /> -->
+<!-- 							</p:column> -->
+
+<!-- 							<p:column headerText="Estado"> -->
+<!-- 								<h:outputText value="#{cid.estado.nome}" /> -->
+<!-- 							</p:column> -->
+
+						</p:dataTable>
+
+					</h:form>
+				</p:tab>
+
+				<p:tab title="Endereços">
+				Aba 2
+				</p:tab>
+
+				<p:tab title="Observações">
+				Aba 3
+				</p:tab>
+			</p:tabView>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
